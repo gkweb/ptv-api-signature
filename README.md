@@ -1,7 +1,28 @@
-# ptv-api-signature
+# PTV API signature generator
 
-# PTV API path generator
-
-Hacked together a method for the API signature generation only
+  Hacked together a method for the API signature generation only
 
 If you are after a full fledged swagger client implementation see [ptv-api npm](https://www.npmjs.com/package/ptv-api)
+
+
+## Example usage
+
+```javascript
+const ptvSig = require ('ptv-api-signature')
+const BASE_URL = 'http://timetableapi.ptv.vic.gov.au'
+const DEV_ID  =  'REPLACE'
+const DEV_KEY =  'REPLACE1-1111-1111-1111-111111111111'
+
+/**
+* Search for stops based on search term
+* @param {String} search_term
+*/
+const getStopsBySearchTerm = (search_term)  =>  {
+return fetch(`${BASE_URL}${ptvSig.pathWithSig(`/v3/search/${search_term.toLowerCase()}`,  [{ name:  'route_types', value:  '0'  }], DEV_ID, DEV_KEY)}`).then(res  =>  res.json())
+}
+
+getDeparturesById(1147).then(d => {
+  console.log(d)
+})
+
+```
