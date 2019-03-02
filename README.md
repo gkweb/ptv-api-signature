@@ -21,7 +21,7 @@ const getStopsBySearchTerm = (search_term)  =>  {
 return fetch(`${BASE_URL}${ptvSig.pathWithSig(`/v3/search/${search_term.toLowerCase()}`,  [{ name:  'route_types', value:  '0'  }], DEV_ID, DEV_KEY)}`).then(res  =>  res.json())
 }
 
-getDeparturesById(1147).then(d => {
+getStopsBySearchTerm('Balaclava').then(d => {
   console.log(d)
 })
 
