@@ -1,0 +1,35 @@
+{
+  "name": "ptv-api-signature",
+  "version": "1.0.0",
+  "description": "Assist with PTV Api signature hash generation",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "npx rollup index.js --file dist/bundle.js --format umd --name \"ptv-api-signature\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "PTV",
+    "myki",
+    "metro",
+    "melbourne",
+    "metro",
+    "Public",
+    "transport",
+    "PT",
+    "Melbourne",
+    "Melbourne",
+    "Tram"
+  ],
+  "author": "gkweb",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gkweb/ptv-api-signature.git"
+  },
+  "devDependencies": {
+    "rollup": "^1.4.0"
+  },
+  "dependencies": {
+    "jssha": "^2.3.1"
+  }
+}
