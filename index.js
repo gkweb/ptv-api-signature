@@ -9,7 +9,7 @@ const jsSHA = require('jssha')
  * @param {String} devKey
  * @returns {String} - Hex Signature for appending to url
  */
-export const genSignature = (path, devId, devKey) => {
+const genSignature = (path, devId, devKey) => {
   const shaO = new jsSHA('SHA-1', 'TEXT')
   shaO.setHMACKey(devKey, 'TEXT')
   shaO.update(path)
@@ -23,7 +23,7 @@ export const genSignature = (path, devId, devKey) => {
  * @param {String} [params.name]
  * @param {String} [params.value]
  */
-export const appendParams = (params, hasParams) => {
+const appendParams = (params, hasParams) => {
   let all = (hasParams) ? '&' : '?' // - If there are already params just append '&' instead for first run
   for (let p = 0; p < params.length; p++) {
     if ((p !== 0)) all += '&'
@@ -45,7 +45,7 @@ export const appendParams = (params, hasParams) => {
  * @param {String} devId
  * @param {String} devKey
  */
-export const pathWithSig = (path, params = [], devId, devKey) => {
+const pathWithSig = (path, params = [], devId, devKey) => {
   const reqPath = `${path}${appendParams([
     ].concat(
         params, [
@@ -57,4 +57,10 @@ export const pathWithSig = (path, params = [], devId, devKey) => {
   const sig = genSignature(reqPath, devId, devKey)
 
   return `${reqPath}&signature=${sig}`
+}
+
+module.exports = {
+  pathWithSig,
+  appendParams,
+  genSignature
 }

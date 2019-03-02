@@ -1,8 +1,7 @@
-(function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
-  typeof define === 'function' && define.amd ? define(['exports'], factory) :
-  (global = global || self, factory(global['ptv-api-signature'] = {}));
-}(this, function (exports) { 'use strict';
+(function (factory) {
+  typeof define === 'function' && define.amd ? define(factory) :
+  factory();
+}(function () { 'use strict';
 
   const jsSHA = require('jssha');
 
@@ -65,10 +64,10 @@
     return `${reqPath}&signature=${sig}`
   };
 
-  exports.genSignature = genSignature;
-  exports.appendParams = appendParams;
-  exports.pathWithSig = pathWithSig;
-
-  Object.defineProperty(exports, '__esModule', { value: true });
+  module.exports = {
+    pathWithSig,
+    appendParams,
+    genSignature
+  };
 
 }));
