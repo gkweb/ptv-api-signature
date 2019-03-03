@@ -1,3 +1,5 @@
+![Build](https://travis-ci.org/gkweb/ptv-api-signature.svg?branch=master "Logo Title Text 1")
+
 # PTV API signature generator
 
 Hacked together a method for the API signature generation only
