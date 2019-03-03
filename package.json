@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "package": "npx rollup index.js --file dist/bundle.js --format umd --name \"ptv-api-signature\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "keywords": [
     "PTV",
@@ -27,6 +27,7 @@
     "url": "https://github.com/gkweb/ptv-api-signature.git"
   },
   "devDependencies": {
+    "jest": "^24.1.0",
     "rollup": "^1.4.0"
   },
   "dependencies": {

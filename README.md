@@ -4,6 +4,9 @@
 
 If you are after a full fledged swagger client implementation see [ptv-api npm](https://www.npmjs.com/package/ptv-api)
 
+## Requirements
+
+First obtain a dev id and key from PTV [here](https://www.ptv.vic.gov.au/footer/data-and-reporting/datasets/ptv-timetable-api/)
 
 ## Example usage
 

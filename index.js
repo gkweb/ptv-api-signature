@@ -9,7 +9,7 @@ const jsSHA = require('jssha')
  * @param {String} devKey
  * @returns {String} - Hex Signature for appending to url
  */
-const genSignature = (path, devId, devKey) => {
+const genSignature = (path, devKey) => {
   const shaO = new jsSHA('SHA-1', 'TEXT')
   shaO.setHMACKey(devKey, 'TEXT')
   shaO.update(path)
@@ -44,6 +44,7 @@ const appendParams = (params, hasParams) => {
  * @param {String} params.value
  * @param {String} devId
  * @param {String} devKey
+ * @returns {String}
  */
 const pathWithSig = (path, params = [], devId, devKey) => {
   const reqPath = `${path}${appendParams([
@@ -54,7 +55,7 @@ const pathWithSig = (path, params = [], devId, devKey) => {
       )
     )}`
 
-  const sig = genSignature(reqPath, devId, devKey)
+  const sig = genSignature(reqPath, devKey)
 
   return `${reqPath}&signature=${sig}`
 }
