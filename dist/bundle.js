@@ -3,7 +3,7 @@
   factory();
 }(function () { 'use strict';
 
-  const jsSHA = require('jssha');
+  const crypto = require('crypto');
 
   /**
    * Generates sig based on path supplied
@@ -14,12 +14,10 @@
    * @param {String} devKey
    * @returns {String} - Hex Signature for appending to url
    */
-  const genSignature = (path, devId, devKey) => {
-    const shaO = new jsSHA('SHA-1', 'TEXT');
-    shaO.setHMACKey(devKey, 'TEXT');
-    shaO.update(path);
-    const sig = shaO.getHMAC('HEX');
-    return sig.toUpperCase()
+  const genSignature = (path, devKey) => {
+    // https://nodejs.org/api/crypto.html
+    const hash = crypto.createHmac('sha1', devKey).update(path).digest('hex');
+    return hash.toUpperCase()
   };
 
   /**
@@ -49,6 +47,7 @@
    * @param {String} params.value
    * @param {String} devId
    * @param {String} devKey
+   * @returns {String}
    */
   const pathWithSig = (path, params = [], devId, devKey) => {
     const reqPath = `${path}${appendParams([
@@ -59,7 +58,7 @@
       )
     )}`;
 
-    const sig = genSignature(reqPath, devId, devKey);
+    const sig = genSignature(reqPath, devKey);
 
     return `${reqPath}&signature=${sig}`
   };
