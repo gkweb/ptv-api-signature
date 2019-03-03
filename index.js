@@ -1,4 +1,4 @@
-const jsSHA = require('jssha')
+const crypto = require('crypto')
 
 /**
  * Generates sig based on path supplied
@@ -10,11 +10,9 @@ const jsSHA = require('jssha')
  * @returns {String} - Hex Signature for appending to url
  */
 const genSignature = (path, devKey) => {
-  const shaO = new jsSHA('SHA-1', 'TEXT')
-  shaO.setHMACKey(devKey, 'TEXT')
-  shaO.update(path)
-  const sig = shaO.getHMAC('HEX')
-  return sig.toUpperCase()
+  // https://nodejs.org/api/crypto.html
+  const hash = crypto.createHmac('sha1', devKey).update(path).digest('hex')
+  return hash.toUpperCase()
 }
 
 /**
