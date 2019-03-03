@@ -1,4 +1,4 @@
-const ptvSig = require('./index.js')
+const ptvSig = require('./dist/bundle.js')
 const DEV_ID = '1111111'
 const DEV_KEY = 'abcde-1234-5678-9101-ffffffffffff'
 
