@@ -17,3 +17,10 @@ test('pathWithSig - Signature to be in path after run AND have generated params'
   const sigRegex = new RegExp(`(${sig})`)
   expect(sigRegex.test(run)).toBe(true)
 })
+
+test('pathWithSig - Params appended correctly when params are baked into the path - IE: No duplicate ? appended. If "?" is present every additional param shouuld be &something=blah&foo=bar', () => {
+  const reqPathWithParamBaked = `/v3/search/balaclava?foo=bar`
+  const run = ptvSig.pathWithSig(reqPathWithParamBaked, [{ name: 'route_types', value: 0 }], DEV_ID, DEV_KEY)
+  const hasMoreThanOneCharOccurence = (run.split('?').length > 2)
+  expect(hasMoreThanOneCharOccurence).toBe(false)
+})

@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "package": "npx rollup -c rollup.config.js",
-    "test": "jest"
+    "test": "npm run package && jest"
   },
   "keywords": [
     "PTV",

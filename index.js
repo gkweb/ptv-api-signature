@@ -45,13 +45,14 @@ const appendParams = (params, hasParams) => {
  * @returns {String}
  */
 const pathWithSig = (path, params = [], devId, devKey) => {
+  const pathHasParam = (path.indexOf('?') !== -1)
   const reqPath = `${path}${appendParams([
     ].concat(
         params, [
           {name: 'devid', value: devId}
         ]
       )
-    )}`
+    , pathHasParam)}`
 
   const sig = genSignature(reqPath, devKey)
 
